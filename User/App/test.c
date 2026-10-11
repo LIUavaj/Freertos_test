@@ -5,50 +5,62 @@
 
 void vLedInit()
 {
-	stLedDeviceParamtdf stinit;
-	stinit.pstgpiobase = GPIOC;
-	stinit.usgpiopin = GPIO_PIN_13;
-	stinit.uconlevel = 1;
+	
+	
+	stLedStaticParamTdf stinit;
+	stLedRunningParamTdf    stRunningInit;
+	
+	
+	stRunningInit.emMode                = emLedMode_Breath;
+    stRunningInit.ulCurrentCount        = 0;
+    stRunningInit.ulOnCountThreshold    = 5;
+    stRunningInit.ulOffCountThreshold   = 5;
+	stRunningInit.ulBreathPeriod        = 1000;
+    vLedDeviceRunningParamInit(&stRunningInit, LED_BOARD);    
+    
+	stinit.pstGpioBase = GPIOC;
+	stinit.usGpioPin = GPIO_PIN_13;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED_BOARD);
 	
-	stinit.pstgpiobase = GPIOB;
-	stinit.usgpiopin = GPIO_PIN_1;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOB;
+	stinit.usGpioPin = GPIO_PIN_1;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED1);
 	
-	stinit.pstgpiobase = GPIOB;
-	stinit.usgpiopin = GPIO_PIN_0;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOB;
+	stinit.usGpioPin = GPIO_PIN_0;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED2);
 	
-	stinit.pstgpiobase = GPIOA;
-	stinit.usgpiopin = GPIO_PIN_7;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOA;
+	stinit.usGpioPin = GPIO_PIN_7;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED3);
 	
-	stinit.pstgpiobase = GPIOA;
-	stinit.usgpiopin = GPIO_PIN_6;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOA;
+	stinit.usGpioPin = GPIO_PIN_6;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED4);
 	
-	stinit.pstgpiobase = GPIOA;
-	stinit.usgpiopin = GPIO_PIN_5;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOA;
+	stinit.usGpioPin = GPIO_PIN_5;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED5);
 	
-	stinit.pstgpiobase = GPIOA;
-	stinit.usgpiopin = GPIO_PIN_4;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOA;
+	stinit.usGpioPin = GPIO_PIN_4;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED6);
 	
-	stinit.pstgpiobase = GPIOA;
-	stinit.usgpiopin = GPIO_PIN_3;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOA;
+	stinit.usGpioPin = GPIO_PIN_3;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED7);
 	
-	stinit.pstgpiobase = GPIOA;
-	stinit.usgpiopin = GPIO_PIN_2;
-	stinit.uconlevel = 0;
+	stinit.pstGpioBase = GPIOA;
+	stinit.usGpioPin = GPIO_PIN_2;
+	stinit.emOnLevel = emLedOnLevel_Low;
 	vLedDeviceInit(&stinit,LED8);
 	
 	
@@ -59,16 +71,26 @@ void vLedInit()
 void vTestExecute(void)
 {
 	uint8_t i;
-	for(i = 0;i<9;i++)
-	{
-		vledOn(i);
-		HAL_Delay(100);
-	}
-	
-	for(i = 0;i<9;i++)
-	{
-		vledOFF(i);
-		HAL_Delay(100);
-	}
-	
+//	static volatile emLedStatusTdf  s_emm;
+//	for(i = 0;i<9;i++)
+//	{
+//		vledOn((emLedDevNumTdf)i);
+//		HAL_Delay(100);
+//	}
+//	s_emm = c_pstGetLedDeviceParam(LED8)->stRunningParam.emCurrentStatus;
+//	
+//	for(i = 0;i<9;i++)
+//	{
+//		vledOFF((emLedDevNumTdf)i);
+//		HAL_Delay(100);
+//		
+//	}
+//	s_emm = c_pstGetLedDeviceParam(LED8)->stRunningParam.emCurrentStatus;	
+//	for(i = 0;i<9;i++)
+//	{
+//		vledToggel((emLedDevNumTdf)i);
+//		HAL_Delay(100);
+//	}
+    vLedDevicePeriodExecute(LED_BOARD);
+    
 }
