@@ -1,0 +1,24 @@
+# Keil build output
+MDK-ARM/freertos_test_01/
+*.o
+*.d
+*.crf
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.lnp
+*.dep
+*.build_log.htm
+
+# User-specific IDE settings
+*.uvguix.*
+*.uvgui.*
+
+# Temporary files
+*.bak
+*.tmp
+*~
+Thumbs.db
+.DS_Store
